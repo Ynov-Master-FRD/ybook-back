@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { fakedataUser, getModelUser } from "../../../models/User";
+import { getModelUser } from "../../../models/User";
 
 export type UserRouteParams = {
     id: number,

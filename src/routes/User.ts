@@ -3,6 +3,7 @@ import User from '../controllers/User';
 const UserRooter = expres.Router();
 
 UserRooter.get("/:id", User.getUser);
-UserRooter.get("/:id/message", User.getUserMessage);
+UserRooter.get("/", User.getAllUsers);
+UserRooter.post("/", User.createUser);
 
 export default UserRooter;

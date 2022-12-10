@@ -1,7 +1,9 @@
 import getUser from "./handlers/getUser"
-import getUserMessage from "./handlers/getUserMessage"
+import getAllUsers from "./handlers/getAllUsers"
+import createUser from "./handlers/createUser"
 
 export default {
     getUser,
-    getUserMessage
+    getAllUsers,
+    createUser
 }
