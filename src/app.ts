@@ -6,8 +6,10 @@ import logger from "morgan";
 import { Response, Request, NextFunction } from "express";
 import lameAuth from "./middlewares/lame-auth";
 import AuthMiddleware from "./middlewares/lame-auth";
-import HelloRoute from "./routes/Hello";
 import UserRooter from "./routes/User";
+import PostRouter from "./routes/Post";
+import PostLikeRouter from "./routes/PostLike";
+import PostCommentRouter from "./routes/PostComment";
 
 const app = express();
 
@@ -25,6 +27,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use("/user", UserRooter);
+app.use("/post", PostRouter);
+app.use("/postlike", PostLikeRouter)
+app.use("/postcomment", PostCommentRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

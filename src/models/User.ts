@@ -26,3 +26,5 @@ export const createUserModel = async (data: Prisma.UserCreateInput): Promise<Use
         data
     })
 }
+
+
