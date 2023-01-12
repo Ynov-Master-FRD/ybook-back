@@ -33,40 +33,46 @@ export const togglePostLikeModel = async (postId: number, userId: number): Promi
         select: {
             postLikes: {
                 where: {
-                    id: userId
+                    userId
                 }
             }
         }
     })
+    console.log(post)
 
     //if the post is already liked by the user, remove the like
     if (post?.postLikes.length) {
-        return await prisma.post.update({
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        return prisma.post.update({
             where: {
                 id: postId
             },
             data: {
                 postLikes: {
-                    disconnect: {
-                        id: userId
+                    deleteMany: {
+                        userId
                     }
                 }
             }
         })
-    }
-    //if the post is not liked by the user, add the like
-    return await prisma.post.update({
-        where: {
-            id: postId
-        },
-        data: {
-            postLikes: {
-                connect: {
-                    id: userId
+    } else {
+        //if the post is not liked by the user, add the like
+        console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+        return prisma.post.update({
+            where: {
+                id: postId
+            },
+            data: {
+                postLikes: {
+                    create: {
+                        userId
+                    }
                 }
             }
-        }
-    })
+        })
+
+    }
+
 }
 
 export const unlikePostModel = async (postId: number, userId: number): Promise<Post> => {
