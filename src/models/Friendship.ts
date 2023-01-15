@@ -51,11 +51,23 @@ export const ignoreFriendshipRequestModel = async (id: number): Promise<Friendsh
         }
     })
 }
-
+/* 
 export const getFriendshipRequestsModel = async (id: number): Promise<Friendship[]> => {
     return await prisma.friendship.findMany({
         where: {
             status: "PENDING",
         }
     })
+} */
+
+export const getFriendshipRequestsModel = async (userId: number): Promise<Friendship[]> => {
+    console.log(userId);
+    return await prisma.friendship.findMany({
+        where: {
+            AND: [
+                { fromId: userId },
+                { status: 'PENDING' },
+            ],
+        },
+    });
 }
