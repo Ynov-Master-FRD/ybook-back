@@ -1,12 +1,19 @@
 
 import { PrismaClient, Post, Prisma } from '@prisma/client'
+import { count } from 'console'
 
 const prisma = new PrismaClient()
 
 
 
 export const getAllPostsModel = async (): Promise<Post[]> => {
-    return await prisma.post.findMany()
+    return await prisma.post.findMany({
+        include: {
+            user: true,
+            postComments: true,
+            postLikes: true,
+        }
+    })
 }
 
 export const getPostModel = async (id: number, options?: Prisma.PostFindUniqueArgs): Promise<Post | null> => {
