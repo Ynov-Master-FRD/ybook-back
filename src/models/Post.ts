@@ -43,13 +43,11 @@ export const togglePostLikeModel = async (postId: number, userId: number): Promi
                     userId
                 }
             }
-        }
+        },
     })
-    console.log(post)
 
     //if the post is already liked by the user, remove the like
     if (post?.postLikes.length) {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         return prisma.post.update({
             where: {
                 id: postId
@@ -64,7 +62,6 @@ export const togglePostLikeModel = async (postId: number, userId: number): Promi
         })
     } else {
         //if the post is not liked by the user, add the like
-        console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbb')
         return prisma.post.update({
             where: {
                 id: postId

@@ -23,3 +23,11 @@ export const getLikedPostsModel = async (userId: number): Promise<PostLike[]> =>
         }
     })
 }
+
+export const getPostLikesModel = async (postId: number): Promise<PostLike[]> => {
+    return await prisma.postLike.findMany({
+        where: {
+            postId
+        }
+    })
+}
