@@ -1,5 +1,6 @@
 
 import { PrismaClient, Post, Prisma } from '@prisma/client'
+import { PrismaClientRustPanicError } from '@prisma/client/runtime'
 import { count } from 'console'
 
 const prisma = new PrismaClient()
@@ -21,6 +22,11 @@ export const getPostModel = async (id: number, options?: Prisma.PostFindUniqueAr
         where: {
             id
         },
+        include: {
+            user: true,
+            postComments: true,
+            postLikes: true,
+        }
     })
 }
 
@@ -29,6 +35,25 @@ export const createPostModel = async (data: Prisma.PostCreateInput): Promise<Pos
         data
     })
 }
+
+export const deletePostModel = async (id: number): Promise<Post> => {
+    await prisma.postLike.deleteMany({
+        where: {
+            postId: id
+        }
+    })
+    await prisma.postComment.deleteMany({
+        where: {
+            postId: id
+        }
+    })
+    return await prisma.post.delete({
+        where: {
+            id
+        }
+    })
+}
+
 
 
 export const togglePostLikeModel = async (postId: number, userId: number): Promise<Post> => {

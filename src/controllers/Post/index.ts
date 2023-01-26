@@ -3,11 +3,13 @@ import getAllPosts from "./handlers/getAllPosts";
 import getPost from "./handlers/getPost";
 import togglePostLike from "./handlers/togglePostLike";
 import unlikePost from "./handlers/unlikePost";
+import deletePost from "./handlers/deletePost";
 
 export default {
     createPost,
     getAllPosts,
     getPost,
     togglePostLike,
-    unlikePost
+    unlikePost,
+    deletePost
 }
