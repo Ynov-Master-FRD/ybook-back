@@ -11,6 +11,8 @@ import PostRouter from "./routes/Post";
 import PostLikeRouter from "./routes/PostLike";
 import PostCommentRouter from "./routes/PostComment";
 import FriendshipRouter from "./routes/Friendship";
+import getAllConversationRequest from "./controllers/Conversation/handlers/getAllConversationRequest";
+import ConversationRouter from "./routes/Conversation";
 
 const app = express();
 
@@ -27,11 +29,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-app.use("/user", UserRooter);
+app.use("/users", UserRooter);
 app.use("/post", PostRouter);
 app.use("/postlike", PostLikeRouter)
 app.use("/postcomment", PostCommentRouter)
 app.use("/friendship", FriendshipRouter)
+app.use("/conversations",ConversationRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
