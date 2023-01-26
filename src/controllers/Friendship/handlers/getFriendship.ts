@@ -3,7 +3,7 @@ import { getFriendshipModel } from '../../../models/Friendship';
 
 const getFriendship: RequestHandler = async (req, res, next) => {
     try {
-        const friendship = await getFriendshipModel(req.body);
+        const friendship = await getFriendshipModel(Number(req.params.id));
         res.json(friendship); //TODO zod
     } catch (err) {
         next(err);

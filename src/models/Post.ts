@@ -1,12 +1,19 @@
 
-import { PrismaClient,Post, Prisma } from '@prisma/client'
+import { PrismaClient, Post, Prisma } from '@prisma/client'
+
 
 const prisma = new PrismaClient()
 
 
 
 export const getAllPostsModel = async (): Promise<Post[]> => {
-    return await prisma.post.findMany()
+    return await prisma.post.findMany({
+        include: {
+            user: true,
+            postComments: true,
+            postLikes: true,
+        }
+    })
 }
 
 export const getPostModel = async (id: number, options?: Prisma.PostFindUniqueArgs): Promise<Post | null> => {
@@ -14,6 +21,11 @@ export const getPostModel = async (id: number, options?: Prisma.PostFindUniqueAr
         where: {
             id
         },
+        include: {
+            user: true,
+            postComments: true,
+            postLikes: true,
+        }
     })
 }
 
@@ -23,20 +35,72 @@ export const createPostModel = async (data: Prisma.PostCreateInput): Promise<Pos
     })
 }
 
+export const deletePostModel = async (id: number): Promise<Post> => {
+    await prisma.postLike.deleteMany({
+        where: {
+            postId: id
+        }
+    })
+    await prisma.postComment.deleteMany({
+        where: {
+            postId: id
+        }
+    })
+    return await prisma.post.delete({
+        where: {
+            id
+        }
+    })
+}
 
-export const likePostModel = async (postId: number, userId: number): Promise<Post> => {
-    return await prisma.post.update({
+
+
+export const togglePostLikeModel = async (postId: number, userId: number): Promise<Post> => {
+    //find if the post is already liked by the user
+    const post = await prisma.post.findUnique({
         where: {
             id: postId
         },
-        data: {
+        select: {
             postLikes: {
-                connect: {
-                    id: userId
+                where: {
+                    userId
                 }
             }
-        }
+        },
     })
+
+    //if the post is already liked by the user, remove the like
+    if (post?.postLikes.length) {
+        return prisma.post.update({
+            where: {
+                id: postId
+            },
+            data: {
+                postLikes: {
+                    deleteMany: {
+                        userId
+                    }
+                }
+            }
+        })
+    } else {
+        //if the post is not liked by the user, add the like
+        return prisma.post.update({
+            where: {
+                id: postId
+            },
+            data: {
+                postLikes: {
+                    create: {
+                        userId
+                    }
+                }
+            }
+        })
+
+    }
+
 }
 
 export const unlikePostModel = async (postId: number, userId: number): Promise<Post> => {

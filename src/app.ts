@@ -14,7 +14,18 @@ import FriendshipRouter from "./routes/Friendship";
 import getAllConversationRequest from "./controllers/Conversation/handlers/getAllConversationRequest";
 import ConversationRouter from "./routes/Conversation";
 
+const cors = require("cors");
+
+
 const app = express();
+
+const corsOptions = {
+  origin : "http://localhost:3000",
+  credentials : true,
+  optionSuccessStatus : 200
+}
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -29,7 +40,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-app.use("/users", UserRooter);
+app.use("/user", UserRooter);
 app.use("/post", PostRouter);
 app.use("/postlike", PostLikeRouter)
 app.use("/postcomment", PostCommentRouter)

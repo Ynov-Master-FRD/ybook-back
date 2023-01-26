@@ -7,7 +7,9 @@ export const getAllCommentOnPostModel = async (postId: number): Promise<PostComm
     return await prisma.postComment.findMany({
         where: {
             postId
-        }
+        },
+        include: {
+            user: {select: { firstname: true, lastname:true, avatarS3Key: true }}}
     })
 }
 
