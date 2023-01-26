@@ -1,7 +1,6 @@
 
 import { PrismaClient, Post, Prisma } from '@prisma/client'
-import { PrismaClientRustPanicError } from '@prisma/client/runtime'
-import { count } from 'console'
+
 
 const prisma = new PrismaClient()
 
