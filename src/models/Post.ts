@@ -35,6 +35,15 @@ export const createPostModel = async (data: Prisma.PostCreateInput): Promise<Pos
     })
 }
 
+export const updatePostModel = async (id: number, data: Prisma.PostUpdateInput): Promise<Post> => {
+    return await prisma.post.update({
+        where: {
+            id
+        },
+        data
+    })
+}
+
 export const deletePostModel = async (id: number): Promise<Post> => {
     await prisma.postLike.deleteMany({
         where: {

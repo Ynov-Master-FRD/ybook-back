@@ -1,3 +1,4 @@
+import updatePost from './handlers/updatePost';
 import createPost from "./handlers/createPost";
 import getAllPosts from "./handlers/getAllPosts";
 import getPost from "./handlers/getPost";
@@ -8,6 +9,7 @@ import deletePost from "./handlers/deletePost";
 export default {
     createPost,
     getAllPosts,
+    updatePost,
     getPost,
     togglePostLike,
     unlikePost,
