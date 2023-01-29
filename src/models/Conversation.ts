@@ -20,7 +20,16 @@ export const getConversationModel = async(conversationId: number)  => {
     return prisma.conversation.findUnique({
         where: {
             id: conversationId
-        } 
+        },
+        include: {
+            from: true,
+            to: true,
+            messages: {
+                orderBy: {
+                    createdAt: 'asc'
+                },
+            }
+        }
     })
 }
 
