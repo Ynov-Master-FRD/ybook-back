@@ -19,6 +19,16 @@ export const createCommentOnPostModel = async (data: Prisma.PostCommentCreateInp
     })
 }
 
+export const editCommentOnPostModel = async (id: number, data: Prisma.PostCommentUpdateInput): Promise<PostComment> => {
+    return await prisma.postComment.update({
+        where: {
+            id
+        },
+        data
+    })
+}
+
+
 export const deleteCommentOnPostModel = async (id: number): Promise<PostComment> => {
     return await prisma.postComment.delete({
         where: {
