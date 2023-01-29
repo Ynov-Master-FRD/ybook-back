@@ -35,10 +35,35 @@ export const getAllConversationModel = async(idUser: number) => {
                         {toId: idUser}      
                     ],
                 }
-
             ]
-            
-
+        },
+        include: {
+            from: {
+                select: {
+                    id: true,
+                    firstname: true,
+                    lastname: true,
+                }
+            },
+            to: {
+                select: {
+                    id: true,
+                    firstname: true,
+                    lastname: true,
+                }
+            },
+            // include last message of the conversation
+            messages: {
+                orderBy: {
+                    createdAt: 'desc'
+                },
+                take: 1,
+                select: {
+                    content: true,
+                    userId: true,
+                    createdAt: true,
+                }
+            }
         }
     });
     
