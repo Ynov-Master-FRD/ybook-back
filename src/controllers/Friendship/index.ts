@@ -5,6 +5,7 @@ import getFriendshipRequests from "./handlers/getFriendshipRequests";
 import getFriendship from "./handlers/getFriendship";
 import deleteFriendship from "./handlers/deleteFrienship";
 import getFriends from "./handlers/getFriends";
+import getIgnoredFriendshipRequest from "./handlers/getIgnoredFriendshipRequest";
 
 export default {
     addFriendshipRequest,
@@ -13,5 +14,6 @@ export default {
     getFriendshipRequests,
     getFriendship,
     deleteFriendship,
-    getFriends
+    getFriends,
+    getIgnoredFriendshipRequest
 }

@@ -79,3 +79,15 @@ export const getFriendshipRequestsModel = async (userId: number): Promise<Friend
         },
     });
 }
+
+export const getIgnoredFriendshipRequestsModel = async (userId: number): Promise<Friendship[]> => {
+    console.log(userId);
+    return await prisma.friendship.findMany({
+        where: {
+            AND: [
+                { fromId: userId },
+                { status: 'IGNORED' },
+            ],
+        },
+    });
+}
