@@ -77,8 +77,12 @@ export const getFriendshipRequestsModel = async (userId: number): Promise<Friend
                 { status: 'PENDING' },
             ],
         },
+        include: {
+            to : true,
+        },
     });
 }
+
 
 export const getIgnoredFriendshipRequestsModel = async (userId: number): Promise<Friendship[]> => {
     console.log(userId);
@@ -88,6 +92,9 @@ export const getIgnoredFriendshipRequestsModel = async (userId: number): Promise
                 { fromId: userId },
                 { status: 'IGNORED' },
             ],
+        },
+        include: {
+            to : true,
         },
     });
 }
