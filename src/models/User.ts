@@ -39,3 +39,16 @@ export const addBlockedUser = async (id: number, data:any): Promise<User> => {
         }
     })
 }
+
+export const removeBlockedUser = async (id: number, data:any): Promise<User> => {
+    return await prisma.user.update({
+        where: {
+            id
+        },
+        data: {
+            blockedUsers: {
+                disconnect: { id: data }
+            }
+        }
+    })
+}

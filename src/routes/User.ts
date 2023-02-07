@@ -11,6 +11,7 @@ UserRooter.get("/", User.getAllUsers);
 UserRooter.post("/", User.createUser);
 
 UserRooter.put("/block/:id", User.addBlocked);
+UserRooter.put("/unblock/:id", User.removeBlocked);
 
 
 

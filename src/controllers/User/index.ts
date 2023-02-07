@@ -1,3 +1,4 @@
+import removeBlocked from "./handlers/removeBlocked";
 import addBlocked from "./handlers/addBlocked";
 import getUser from "./handlers/getUser"
 import getAllUsers from "./handlers/getAllUsers"
@@ -7,5 +8,6 @@ export default {
     getUser,
     getAllUsers,
     createUser,
-    addBlocked
+    addBlocked,
+    removeBlocked
 }
