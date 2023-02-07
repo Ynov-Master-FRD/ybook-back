@@ -4,27 +4,24 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import { Response, Request, NextFunction } from "express";
-import lameAuth from "./middlewares/lame-auth";
-import AuthMiddleware from "./middlewares/lame-auth";
 import UserRooter from "./routes/User";
 import PostRouter from "./routes/Post";
 import PostLikeRouter from "./routes/PostLike";
 import PostCommentRouter from "./routes/PostComment";
 import FriendshipRouter from "./routes/Friendship";
-import getAllConversationRequest from "./controllers/Conversation/handlers/getAllConversationRequest";
 import ConversationRouter from "./routes/Conversation";
-
-const cors = require("cors");
+import cors from "cors";
 
 
 const app = express();
+
+
 
 const corsOptions = {
   origin : "http://localhost:3000",
   credentials : true,
   optionSuccessStatus : 200
 }
-
 app.use(cors(corsOptions));
 
 // view engine setup

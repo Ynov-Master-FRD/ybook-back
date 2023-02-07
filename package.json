@@ -9,7 +9,8 @@
     "@prisma/client": "^4.9.0",
     "aws-sdk": "^2.1265.0",
     "cors": "^2.8.5",
-    "jade": "~1.11.0"
+    "jade": "~1.11.0",
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",

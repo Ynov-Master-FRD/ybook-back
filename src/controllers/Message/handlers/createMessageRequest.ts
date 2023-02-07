@@ -1,6 +1,6 @@
-import { ConversationMessage, Prisma, PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import { createMessageModel } from "../../../models/Message";
+import {ioServer}  from "../../../index";
 
 const createMessageRequest = async (req: Request, res: Response) => {
     try{
@@ -11,6 +11,7 @@ const createMessageRequest = async (req: Request, res: Response) => {
         try{
             console.log(data);
             const message = await createMessageModel(data);
+            ioServer.to(`room-${data.conversationId}`).emit('sendMessage',message);
             return res.json(message)
         }catch(e){
             console.log(e);
