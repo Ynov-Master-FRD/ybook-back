@@ -19,7 +19,6 @@ export const getModelUser = async (id: number): Promise<User | null> => {
     })
 }
 
-
 //create a new user in the database
 export const createUserModel = async (data: Prisma.UserCreateInput): Promise<User> => {
     return await prisma.user.create({
@@ -28,3 +27,15 @@ export const createUserModel = async (data: Prisma.UserCreateInput): Promise<Use
 }
 
 
+export const addBlockedUser = async (id: number, data:any): Promise<User> => {
+    return await prisma.user.update({
+        where: {
+            id
+        },
+        data: {
+            blockedUsers: {
+                connect: { id: data }
+            }
+        }
+    })
+}
