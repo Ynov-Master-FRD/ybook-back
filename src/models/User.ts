@@ -8,7 +8,15 @@ export const fakedataUser = [
 
 
 export const getAllUsersModel = async (): Promise<User[]> => {
-    return await prisma.user.findMany()
+    return await prisma.user.findMany({
+        include: {
+            blockedByUsers: {
+                select: {
+                    id: true,
+                }
+            }
+        },
+    })
 }
 
 export const getModelUser = async (id: number): Promise<User | null> => {
