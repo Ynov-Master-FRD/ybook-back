@@ -23,6 +23,15 @@ export const getModelUser = async (id: number): Promise<User | null> => {
     return await prisma.user.findUnique({
         where: {
             id
+        },
+        include: {
+            blockedUsers: {
+                select: {
+                    firstname: true,
+                    lastname: true,
+                    email: true,
+                }
+            }
         }
     })
 }
