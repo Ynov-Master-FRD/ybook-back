@@ -1,7 +1,8 @@
-type UserMessage = {id: number, userId: number, message: string}
+import {  Prisma, PrismaClient, ConversationMessage } from "@prisma/client"
+const prisma = new PrismaClient()
 
-export const fakedataMessage:UserMessage[] = [
-    {id: 1, userId: 1, message: "Hello"},
-]
-
-export const getFakeMessage = (id: number): UserMessage[]  => fakedataMessage.filter((message)=> message.userId === id)
+export const createMessageModel = async(data: Prisma.ConversationMessageCreateInput) => {
+    return prisma.conversationMessage.create({
+        data
+    })
+}
