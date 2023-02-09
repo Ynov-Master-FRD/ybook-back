@@ -7,6 +7,4 @@ https://github.com/julienfdev/ybook-interfaces
 3. Lancer la commande `npx prisma generate` pour mettre à jours
 4. Lancer la commande `npm run start`
 
-exemple rest + express : 
-https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express
 
