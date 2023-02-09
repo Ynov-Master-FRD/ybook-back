@@ -7,7 +7,6 @@ const getIgnoredFriendshipRequests: RequestHandler = async (req, res, next) => {
       Number(req.params.userId)
     );
     res.json(friendship);
-    console.log(friendship);
   } catch (err) {
     next(err);
   }
