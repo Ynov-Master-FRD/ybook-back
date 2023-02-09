@@ -2,10 +2,7 @@
 
 https://github.com/julienfdev/ybook-interfaces
 
-`npx prisma migrate dev --name init`
+1. Copier le fichier .env à la racine du projet
+2. Lancer la commande `npm run build`qui installera les dépendances, generera le prisma et lancera le back
 
-`npx prisma generate` pour mettre à jours
-
-exemple rest + express : 
-https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express
 
