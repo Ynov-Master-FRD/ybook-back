@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/index.ts"
+    "start": "nodemon ./src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@prisma/client": "^4.9.0",

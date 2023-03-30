@@ -1,0 +1,55 @@
+variables:
+  PROD_ENV: "./dist"
+
+# Test : devra simplement injecter des variables d'environnement de test et lancer les tests (npm run test, attention aux dépendances)
+test-job:
+  stage: test
+
+  script:
+    - echo "début test"
+    - npm install
+    - npm run test $TEST_ENV > test.env
+  artifacts:
+    reports:
+      dotenv: test.env
+    
+  
+
+
+# Build : injecte un environnement de production, installe les dépendances, build le projet, exporte les artifacts correspondants
+
+build-job:
+  stage: build
+  needs: 
+    - test-job
+  script:
+    - echo "début build"
+    - ech
+    - npm run build $PROD_ENV
+    - echo "fin build"
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1 week
+    
+
+
+# Deploy : exécute fictivement les commandes SSH suivantes : copier le build artefact, exécuter le docker-compose
+
+
+deploy-job:
+  stage: deploy
+  needs: 
+    job: build-job
+  script: 
+    - echo "début deploy"
+    - docker-compose up -d 
+    - ssh -c 
+
+
+
+
+ 
+
+
+
