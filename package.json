@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./src/index.ts",
-    "build": "npm install & npx prisma generate & npm run start "
+    "build": "npm install & npx prisma generate & npm run start ",
+    "build2": "tsc"
   },
   "dependencies": {
     "@prisma/client": "^4.9.0",
